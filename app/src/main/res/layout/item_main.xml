@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+ * Created by Faisal Amir
+ * 
+ * Name     : Muhammad Faisal Amir
+ * E-mail   : faisalamircs@gmail.com
+ * Github   : github.com/amirisback
+ * 
+ * Copyright (C) 2021 FrogoBox Inc.      
+ * All rights reserved
+ *
+ -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nutri_rv_list_type_11_root_linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/nutri_dimen_16dp"
+    android:layout_marginEnd="@dimen/nutri_dimen_16dp"
+    android:layout_marginBottom="@dimen/nutri_dimen_16dp"
+    android:background="@drawable/background_card"
+    android:elevation="@dimen/nutri_dimen_2dp"
+    android:orientation="vertical"
+    android:padding="@dimen/nutri_dimen_16dp">
+
+    <ImageView
+        android:id="@+id/nutri_rv_list_type_11_iv_poster"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nutri_dimen_150dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/nutri_rv_list_type_11_tv_title"
+        style="@style/nutriTvListTitle"
+        tools:text="@tools:sample/lorem/random" />
+
+    <TextView
+        android:id="@+id/nutri_rv_list_type_11_tv_subtitle"
+        style="@style/nutriTvListSubTitle"
+        tools:text="@tools:sample/lorem/random" />
+
+    <TextView
+        android:id="@+id/nutri_rv_list_type_11_tv_desc"
+        style="@style/nutriTvListDescription"
+        android:layout_marginTop="@dimen/nutri_dimen_8dp"
+        tools:text="@tools:sample/lorem/random" />
+
+</LinearLayout>
