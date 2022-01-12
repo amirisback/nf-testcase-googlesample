@@ -15,7 +15,7 @@ import com.example.android.architecture.blueprints.todoapp.data.Article
  * E-mail   : faisalamircs@gmail.com
  * Github   : github.com/amirisback
  * -----------------------------------------
- * Copyright (C) 2022 FrogoBox Inc.      
+ * Copyright (C) 2022 FrogoBox Inc.
  * All rights reserved
  *
  */
@@ -25,11 +25,19 @@ class MainAdapter(private val listener: MainClickListener) : RecyclerView.Adapte
     private val listData = mutableListOf<Article>()
 
     fun setContent(data: List<Article>) {
+        listData.clear()
         listData.addAll(data)
     }
 
+    fun clearData() {
+        listData.clear()
+        notifyItemRangeRemoved(0, listData.size - 1)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false))
+        return MainHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {

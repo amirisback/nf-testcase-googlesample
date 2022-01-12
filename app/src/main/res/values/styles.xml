@@ -15,11 +15,12 @@
   -->
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. --><style name="AppTheme" parent="Base.AppTheme" />
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Base.AppTheme" />
 
     <style name="AppTheme.OverlapSystemBar" parent="Base.AppTheme" />
 
-    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -38,7 +39,7 @@
 
     <style name="Toolbar" parent="ThemeOverlay.AppCompat.Light" />
 
-        <!-- Util -->
+    <!-- Util -->
 
     <style name="nutriBaseAreaWrapContent">
         <item name="android:layout_width">wrap_content</item>
