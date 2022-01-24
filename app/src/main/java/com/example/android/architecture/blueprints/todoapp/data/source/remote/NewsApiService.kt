@@ -6,7 +6,7 @@ import com.example.android.architecture.blueprints.todoapp.util.NewsUrl.URL_EVER
 import com.example.android.architecture.blueprints.todoapp.util.NewsUrl.URL_SOURCES
 import com.example.android.architecture.blueprints.todoapp.util.NewsUrl.URL_TOP_HEADLINE
 import com.example.android.architecture.blueprints.todoapp.util.NewsConstant
-import io.reactivex.Observable
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -39,7 +39,7 @@ interface NewsApiService {
         @Query(NewsConstant.QUERY_COUNTRY) country: String?,
         @Query(NewsConstant.QUERY_PAGE_SIZE) pageSize: Int?,
         @Query(NewsConstant.QUERY_PAGE) page: Int?
-    ): Observable<ArticleResponse>
+    ): Call<ArticleResponse>
 
     // Get Everythings
     @GET(URL_EVERYTHING)
@@ -56,7 +56,7 @@ interface NewsApiService {
         @Query(NewsConstant.QUERY_SORT_BY) sortBy: String?,
         @Query(NewsConstant.QUERY_PAGE_SIZE) pageSize: Int?,
         @Query(NewsConstant.QUERY_PAGE) page: Int?
-    ): Observable<ArticleResponse>
+    ): Call<ArticleResponse>
 
     // Get Sources
     @GET(URL_SOURCES)
@@ -65,7 +65,7 @@ interface NewsApiService {
         @Query(NewsConstant.QUERY_LANGUAGE) language: String,
         @Query(NewsConstant.QUERY_COUNTRY) country: String,
         @Query(NewsConstant.QUERY_CATEGORY) category: String
-    ): Observable<SourceResponse>
+    ): Call<SourceResponse>
 
     // Please Add Your Code Under This Line --------------------------------------------------------
 

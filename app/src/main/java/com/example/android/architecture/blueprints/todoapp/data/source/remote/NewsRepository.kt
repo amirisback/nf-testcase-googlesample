@@ -3,7 +3,9 @@ package com.example.android.architecture.blueprints.todoapp.data.source.remote
 import com.example.android.architecture.blueprints.todoapp.data.ArticleResponse
 import com.example.android.architecture.blueprints.todoapp.data.SourceResponse
 import com.example.android.architecture.blueprints.todoapp.util.NewsUrl
-import io.reactivex.schedulers.Schedulers
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * Created by Faisal Amir
@@ -37,24 +39,36 @@ object NewsRepository : NewsDataSource {
         page: Int?,
         callback: NutriResponse.DataResponse<ArticleResponse>
     ) {
-        newsApiService.getTopHeadline(apiKey, q, sources, category, country, pageSize, page)
-            .subscribeOn(Schedulers.io())
-            .doOnSubscribe { callback.onShowProgress() }
-            .doOnTerminate { callback.onHideProgress() }
-            .observeOn(Schedulers.single())
-            .subscribe(object : NutriApiObserver<ArticleResponse>() {
-                override fun onSuccess(data: ArticleResponse) {
-                    if (data.articles?.size == 0) {
-                        callback.onEmpty()
-                    } else {
-                        callback.onSuccess(data)
-                    }
-                }
 
-                override fun onFailure(code: Int, errorMessage: String) {
-                    callback.onFailed(code, errorMessage)
-                }
-            })
+        callback.onShowProgress()
+        newsApiService.getTopHeadline(apiKey, q, sources, category, country, pageSize, page)
+            .enqueue(
+                object : Callback<ArticleResponse> {
+                    override fun onResponse(
+                        call: Call<ArticleResponse>,
+                        response: Response<ArticleResponse>
+                    ) {
+                        callback.onHideProgress()
+                        response.body()?.let { it1 ->
+                            it1.articles.let {
+                                if (it != null) {
+                                    if (it.isEmpty()) {
+                                        callback.onEmpty()
+                                    } else {
+                                        callback.onSuccess(it1)
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
+                        callback.onHideProgress()
+                        callback.onFailed(500, t.localizedMessage)
+                    }
+
+                })
+
     }
 
     override fun getEverythings(
@@ -72,6 +86,7 @@ object NewsRepository : NewsDataSource {
         page: Int?,
         callback: NutriResponse.DataResponse<ArticleResponse>
     ) {
+        callback.onShowProgress()
         newsApiService.getEverythings(
             apiKey,
             q,
@@ -86,23 +101,32 @@ object NewsRepository : NewsDataSource {
             pageSize,
             page
         )
-            .subscribeOn(Schedulers.io())
-            .doOnSubscribe { callback.onShowProgress() }
-            .doOnTerminate { callback.onHideProgress() }
-            .observeOn(Schedulers.single())
-            .subscribe(object : NutriApiObserver<ArticleResponse>() {
-                override fun onSuccess(data: ArticleResponse) {
-                    if (data.articles?.size == 0) {
-                        callback.onEmpty()
-                    } else {
-                        callback.onSuccess(data)
+            .enqueue(
+                object : Callback<ArticleResponse> {
+                    override fun onResponse(
+                        call: Call<ArticleResponse>,
+                        response: Response<ArticleResponse>
+                    ) {
+                        callback.onHideProgress()
+                        response.body()?.let { it1 ->
+                            it1.articles.let {
+                                if (it != null) {
+                                    if (it.isEmpty()) {
+                                        callback.onEmpty()
+                                    } else {
+                                        callback.onSuccess(it1)
+                                    }
+                                }
+                            }
+                        }
                     }
-                }
 
-                override fun onFailure(code: Int, errorMessage: String) {
-                    callback.onFailed(code, errorMessage)
-                }
-            })
+                    override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
+                        callback.onHideProgress()
+                        callback.onFailed(500, t.localizedMessage)
+                    }
+
+                })
     }
 
     override fun getSources(
@@ -112,24 +136,34 @@ object NewsRepository : NewsDataSource {
         category: String,
         callback: NutriResponse.DataResponse<SourceResponse>
     ) {
+        callback.onShowProgress()
         newsApiService.getSources(apiKey, language, country, category)
-            .subscribeOn(Schedulers.io())
-            .doOnSubscribe { callback.onShowProgress() }
-            .doOnTerminate { callback.onHideProgress() }
-            .observeOn(Schedulers.single())
-            .subscribe(object : NutriApiObserver<SourceResponse>() {
-                override fun onSuccess(data: SourceResponse) {
-                    if (data.sources?.size == 0) {
-                        callback.onEmpty()
-                    } else {
-                        callback.onSuccess(data)
+            .enqueue(
+                object : Callback<SourceResponse> {
+                    override fun onResponse(
+                        call: Call<SourceResponse>,
+                        response: Response<SourceResponse>
+                    ) {
+                        callback.onHideProgress()
+                        response.body()?.let { it1 ->
+                            it1.sources.let {
+                                if (it != null) {
+                                    if (it.isEmpty()) {
+                                        callback.onEmpty()
+                                    } else {
+                                        callback.onSuccess(it1)
+                                    }
+                                }
+                            }
+                        }
                     }
-                }
 
-                override fun onFailure(code: Int, errorMessage: String) {
-                    callback.onFailed(code, errorMessage)
-                }
-            })
+                    override fun onFailure(call: Call<SourceResponse>, t: Throwable) {
+                        callback.onHideProgress()
+                        callback.onFailed(500, t.localizedMessage)
+                    }
+
+                })
     }
 
     // Please Add Your Code Under This Line --------------------------------------------------------
