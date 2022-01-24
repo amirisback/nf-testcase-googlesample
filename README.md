@@ -1,6 +1,7 @@
-![ScreenShoot Apps](docs/image/banner.png?raw=true)
+![ScreenShoot Apps](https://raw.githubusercontent.com/amirisback/nutrition-framework/master/docs/image/banner.png?raw=true)
 
-## About This Project (work-in-progress 👷🔧️👷‍♀️⛏)
+## About This Project (release-and-work-in-progress 👷🔧️👷‍♀️⛏)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-nutrition--framework-brightgreen.svg?style=flat-square)](https://android-arsenal.com/details/1/8370)
 [![JitPack](https://jitpack.io/v/amirisback/nutrition-framework.svg?style=flat-square)](https://jitpack.io/#amirisback/nutrition-framework)
 - Test Case Implementation Dari [Nutrition Framework](https://github.com/amirisback/nutrition-framework)
 
